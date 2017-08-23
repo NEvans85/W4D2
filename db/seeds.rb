@@ -14,3 +14,12 @@
              sex: %w(M F).sample,
              description: Faker::Lorem.words(rand(1..15)).join)
 end
+
+cats = Cat.all.size
+
+50.times do
+  CatRentalRequest.create(cat_id: rand(1..cats),
+                          start_date: Faker::Date.backward(30),
+                          end_date: Faker::Date.forward(30),
+                          status: %w(PENDING APPROVED DENIED).sample)
+end
